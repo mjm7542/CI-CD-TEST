@@ -106,43 +106,43 @@ describe('Items Domain Integration Test', () => {
         });
     });
 
-    //! GET /api/items/1 API의 검증 로직 (상세 조회)
-    test('GET /api/items API, Integration Test Success Case, is Exist Item Data', async () => {
-        // GET /api/posts API에서 사용되는 body 데이터입니다.
-        const createPostRequestBodyParams = {
-            itemId: 1,
-            itemName: 'itemName',
-            explanation: 'explanation',
-            price: 999,
-            imageUrl: 'imageUrl',
-        }
+    // //! GET /api/items/1 API의 검증 로직 (상세 조회)
+    // test('GET /api/items API, Integration Test Success Case, is Exist Item Data', async () => {
+    //     // GET /api/posts API에서 사용되는 body 데이터입니다.
+    //     const createPostRequestBodyParams = {
+    //         itemId: 1,
+    //         itemName: 'itemName',
+    //         explanation: 'explanation',
+    //         price: 999,
+    //         imageUrl: 'imageUrl',
+    //     }
 
-//         const response = await supertest(app)
-//             .get(`/api/items/1`) // API의 HTTP Method & URL
-//             .query({}) // Request Query String
-//             .send({}); // Request Body
+    //     const response = await supertest(app)
+    //         .get(`/api/items/1`) // API의 HTTP Method & URL
+    //         .query({}) // Request Query String
+    //         .send({}); // Request Body
 
-//         /** GET /api/posts API의 검증 로직 **/
-//         // 1. API를 호출하였을 때, 성공적으로 실행할 경우 200 Http Status Code를 반환한다.
-//         // 2. API의 Response는 1개의 데이터를 생성한 상태이므로 { data: [ { postId, nickname, title, createdAt, updatedAt }] }의 형태를 가진다.
+    //     /** GET /api/posts API의 검증 로직 **/
+    //     // 1. API를 호출하였을 때, 성공적으로 실행할 경우 200 Http Status Code를 반환한다.
+    //     // 2. API의 Response는 1개의 데이터를 생성한 상태이므로 { data: [ { postId, nickname, title, createdAt, updatedAt }] }의 형태를 가진다.
 
-//         // 1. API를 호출하였을 때, 성공적으로 실행할 경우 200 Http Status Code를 반환한다.
-//         expect(response.status).toEqual(200);
+    //     // 1. API를 호출하였을 때, 성공적으로 실행할 경우 200 Http Status Code를 반환한다.
+    //     expect(response.status).toEqual(200);
 
-//         // 2. API의 Response는 1개의 데이터를 생성한 상태이므로 { data: [ { postId, nickname, title, createdAt, updatedAt }] }의 형태를 가진다.
-//         expect(response.body).toMatchObject({
-//             data: [
-//                 {
-//                     itemId: createPostRequestBodyParams.itemId,
-//                     itemName: createPostRequestBodyParams.itemName,
-//                     explanation: createPostRequestBodyParams.explanation,
-//                     price: createPostRequestBodyParams.price,
-//                     imageUrl: createPostRequestBodyParams.imageUrl,
-//                 },
-//             ],
-//         });
-//     });
-// });
+    //     // 2. API의 Response는 1개의 데이터를 생성한 상태이므로 { data: [ { postId, nickname, title, createdAt, updatedAt }] }의 형태를 가진다.
+    //     expect(response.body).toMatchObject({
+    //         data: [
+    //             {
+    //                 itemId: createPostRequestBodyParams.itemId,
+    //                 itemName: createPostRequestBodyParams.itemName,
+    //                 explanation: createPostRequestBodyParams.explanation,
+    //                 price: createPostRequestBodyParams.price,
+    //                 imageUrl: createPostRequestBodyParams.imageUrl,
+    //             },
+    //         ],
+    //     });
+    // });
+});
 
 afterAll(async () => {
     // 통합 테스트가 완료되었을 경우 sequelize의 연결된 테이블들의 정보를 초기화합니다.
