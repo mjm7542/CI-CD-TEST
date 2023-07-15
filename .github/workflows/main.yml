@@ -56,5 +56,5 @@ jobs:
       run: aws deploy create-deployment
         --application-name CICDTEST1
         --deployment-config-name CodeDeployDefault.OneAtATime
-        --deployment-group-name GROUP
+        --deployment-group-name CICDTEST1-group
         --s3-location bucket=mjmbucket1,bundleType=zip,key=tqtq/CI.zip
