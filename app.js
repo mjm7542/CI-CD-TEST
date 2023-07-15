@@ -8,7 +8,7 @@ app.use(express.json());
 app.use(cookieParser());
 
 app.get('/', (req, res) => {
-    res.send("이게 왜 됨? 제발 되라 부탁이다");
+    res.send("이게 왜 됨? 제발 되라 부탁이다.");
 });
 
 app.use('/api', indexRouter);
