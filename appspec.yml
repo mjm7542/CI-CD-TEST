@@ -1,23 +1,47 @@
 version: 0.0
 os: linux
-
 files:
-  - source:  /
-    destination: /home/ubuntu
+  - source: /
+    destination: /home/ubuntu/CI-CD-TEST
     overwrite: yes
 
+file_exists_behavior: OVERWRITE
+
 permissions:
-  - object: /
-    pattern: "**"
+  - object: /home/ubuntu
+    pattern: '**'
     owner: ubuntu
     group: ubuntu
 
 hooks:
-  AfterInstall:
+  BeforeInstall:
     - location: scripts/stop.sh
-      timeout: 60
       runas: ubuntu
-  ApplicationStart:
+  AfterInstall:
     - location: scripts/start.sh
-      timeout: 60
+      timeout: 300
       runas: ubuntu
+
+# version: 0.0
+# os: linux
+
+# files:
+#   - source:  /
+#     destination: /home/ubuntu
+#     overwrite: yes
+
+# permissions:
+#   - object: /
+#     pattern: "**"
+#     owner: ubuntu
+#     group: ubuntu
+
+# hooks:
+#   AfterInstall:
+#     - location: scripts/stop.sh
+#       timeout: 60
+#       runas: ubuntu
+#   ApplicationStart:
+#     - location: scripts/start.sh
+#       timeout: 60
+#       runas: ubuntu
