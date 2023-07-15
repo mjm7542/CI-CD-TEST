@@ -50,7 +50,7 @@ jobs:
         aws-region: ${{ env.AWS_REGION }}
 
     - name: upload to S3
-      run: aws s3 cp --region ap-northeast-2 ./CI.zip s3://mjmbucket1/tqtq
+      run: aws s3 cp --region ap-northeast-2 ./CI.zip s3://mjmbucket1/tqtq/
 
     - name: deploy with AWS codeDeploy
       run: aws deploy create-deployment
