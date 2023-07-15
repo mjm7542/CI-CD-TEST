@@ -23,38 +23,38 @@ jobs:
     environment: production
 
     steps:
-    # (1) 기본 체크아웃
-    - name: Checkout
-      uses: actions/checkout@v3
+      # (1) 기본 체크아웃
+      - name: Checkout
+        uses: actions/checkout@v3
 
-    # (2) node.js 세팅
-    - name: Set up Node.js
-      uses: actions/setup-node@v2
-      with:
-        node-version: '18'
+      # (2) node.js 세팅
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: "18"
 
-    # (3) 패키지 설치 및 빌드
-    - name: Install dependencies and build
-      run: |
-        npm ci
-        
-    - name: zip file
-      run: zip -r CI.zip ./app.js ./config ./migrations ./models ./routes ./scripts ./appspec.yml ./package.json ./package-lock.json ./middlewares
-          
-   # (4) AWS 인증 (IAM 사용자 Access Key, Secret Key 활용)
-    - name: Configure AWS credentials
-      uses: aws-actions/configure-aws-credentials@v1
-      with:
-        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        aws-region: ${{ env.AWS_REGION }}
+      # (3) 패키지 설치 및 빌드
+      - name: Install dependencies and build
+        run: |
+          npm ci
 
-    - name: upload to S3
-      run: aws s3 cp --region ap-northeast-2 ./CI.zip s3://mjmbucket1/tqtq/
+      - name: zip file
+        run: zip -r CI.zip ./app.js ./config ./migrations ./models ./routes ./scripts ./appspec.yml ./package.json ./package-lock.json ./middlewares
 
-    - name: deploy with AWS codeDeploy
-      run: aws deploy create-deployment
-        --application-name CICDTEST1
-        --deployment-config-name CodeDeployDefault.OneAtATime
-        --deployment-group-name CICDTEST1-group
-        --s3-location bucket=mjmbucket1,bundleType=zip,key=tqtq/CI.zip
+      # (4) AWS 인증 (IAM 사용자 Access Key, Secret Key 활용)
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: upload to S3
+        run: aws s3 cp --region ap-northeast-2 ./CI.zip s3://mjmbucket1/tqtq/
+
+      - name: deploy with AWS codeDeploy
+        run: aws deploy create-deployment
+          --application-name CICDTEST1
+          --deployment-config-name CodeDeployDefault.OneAtATime
+          --deployment-group-name CICDTEST1-group
+          --s3-location bucket=mjmbucket1,bundleType=zip,key=tqtq/CI.zip
