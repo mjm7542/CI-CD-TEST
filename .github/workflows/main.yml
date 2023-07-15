@@ -36,7 +36,7 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_PRIVATE_ACCESS_KEY }}
           aws-region: ap-northeast-2
 
-      - - name: zip file
+      - name: zip file
           run: zip -r CI.zip ./app.js ./config ./migrations ./models ./routes ./scripts ./appspec.yml ./package.json ./package-lock.json ./middlewares
 
         # (4) AWS 인증 (IAM 사용자 Access Key, Secret Key 활용)
