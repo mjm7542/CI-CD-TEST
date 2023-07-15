@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "pm2 start app.js",
     "test": "jest --forceExit",
     "test:silent": "jest --silent --forceExit",
     "test:coverage": "jest --coverage --forceExit",
